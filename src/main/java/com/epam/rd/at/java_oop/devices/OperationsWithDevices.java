@@ -7,11 +7,13 @@ import java.util.Comparator;
 
 public class OperationsWithDevices {
 
-    //эта функция у меня для красоты, она не используется
+    /*
+    эта функция у меня для красоты, она не используется
     static void sortByAll(AbstractElectrodevice[] flat) {
-        Arrays.sort(flat);
-        System.out.println(Arrays.toString(flat));
-    }
+            Arrays.sort(flat);
+            System.out.println(Arrays.toString(flat));
+        }
+    */
 
     static void sortByCost(AbstractElectrodevice[] flat) {
         Arrays.sort(flat, Comparator.comparingInt(AbstractElectrodevice::getCost));

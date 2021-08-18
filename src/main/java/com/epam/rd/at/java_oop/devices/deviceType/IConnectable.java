@@ -5,12 +5,9 @@ package com.epam.rd.at.java_oop.devices.deviceType;
  * интерфейсы: 1)обычный выключатель (Switcher), 2)диммер (Dimmer switch)
  */
 
-public interface Connection {
+public interface IConnectable {
 
     int getMaxPower(); //мощность прибора как характеристика
 
     int getSuppliedPower(); //мощность с которой включили прибор, если прибор не в сети Electric power (P) = 0 W
-
-    boolean getIsEnable(); //узнать состояние прибора (включен или выключен)
-
 }

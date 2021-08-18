@@ -1,39 +1,44 @@
 package com.epam.rd.at.java_oop.devices;
 
 import com.epam.rd.at.java_oop.devices.deviceType.AbstractElectrodevice;
+import com.epam.rd.at.java_oop.devices.deviceType.householdApplience.HouseholdAppliances;
+import com.epam.rd.at.java_oop.devices.deviceType.illumination.DimmerPosition;
+import com.epam.rd.at.java_oop.devices.deviceType.illumination.Illumination;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 public class OperationsWithDevices {
 
-    /*
-    эта функция у меня для красоты, она не используется
-    static void sortByAll(AbstractElectrodevice[] flat) {
-            Arrays.sort(flat);
-            System.out.println(Arrays.toString(flat));
-        }
-    */
+    // эта функция у меня для красоты, она не используется
+    // static void sortByAll(AbstractElectrodevice[] flat) {
+    //         Arrays.sort(flat);
+    //         System.out.println(Arrays.toString(flat));
+    //     }
 
-    static void sortByCost(AbstractElectrodevice[] flat) {
+    public static void sortByCost(AbstractElectrodevice[] flat) {
         Arrays.sort(flat, Comparator.comparingInt(AbstractElectrodevice::getCost));
         System.out.println(Arrays.toString(flat));
     }
 
-    static void switchOnSomeDevices(AbstractElectrodevice[] flat) {
+    public static void switchOnSomeDevices(AbstractElectrodevice[] flat) {
         for (AbstractElectrodevice abstractElectrodevice : flat) {
             boolean randomSwitch = Math.random() >= 0.3;
             if (randomSwitch) {
-                abstractElectrodevice.setIsEnable();
+                if (abstractElectrodevice instanceof HouseholdAppliances) {
+                    ((HouseholdAppliances) abstractElectrodevice).turnOn();
+                } else if (abstractElectrodevice instanceof Illumination) {
+                    ((Illumination) abstractElectrodevice).setDimmerPosition(DimmerPosition.N4);
+                }
             }
         }
     }
 
-    static int currentPowerConsumption(AbstractElectrodevice[] flat) {
+    public static int currentPowerConsumption(AbstractElectrodevice[] flat) {
         int totalCapacity = 0;
         int totalMaxCapacity = 0;
         for (AbstractElectrodevice abstractElectrodevice : flat) {
-            if (abstractElectrodevice.getIsEnable()) {
+            if (abstractElectrodevice.isEnabled()) {
                 totalCapacity += abstractElectrodevice.getSuppliedPower();
             }
             totalMaxCapacity += abstractElectrodevice.getMaxPower();
@@ -44,7 +49,7 @@ public class OperationsWithDevices {
         return totalCapacity;
     }
 
-    static void deviceWithRequiredPower(AbstractElectrodevice[] flat, int minCapacity, int maxCapacity) {
+    public static void deviceWithRequiredPower(AbstractElectrodevice[] flat, int minCapacity, int maxCapacity) {
         boolean deviceIsExist = false;
         for (AbstractElectrodevice abstractElectrodevice : flat) {
             int currentDevicePower = abstractElectrodevice.getMaxPower();
@@ -59,7 +64,3 @@ public class OperationsWithDevices {
         }
     }
 }
-
-
-
-

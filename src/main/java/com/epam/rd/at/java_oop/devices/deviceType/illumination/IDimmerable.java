@@ -1,6 +1,6 @@
 package com.epam.rd.at.java_oop.devices.deviceType.illumination;
 
-import com.epam.rd.at.java_oop.devices.deviceType.Connection;
+import com.epam.rd.at.java_oop.devices.deviceType.IConnectable;
 
 /**
  * Общие характеристики димера.
@@ -8,12 +8,7 @@ import com.epam.rd.at.java_oop.devices.deviceType.Connection;
  * путём выбора одного из четырёх положений, задано в процентах от полной мощности
  * в перечислении SuppliedPowerPercents
  */
-public interface Dimmer extends Connection {
+public interface IDimmerable extends IConnectable {
 
-    void setPercentsEnum(Enum<SuppliedPowerPercents> percentsEnum); //установить мощность на димере в процентах
-
-    int getPercentsEnum(); //получить выбранный процент мощности
-
-    int getSuppliedPower(); //получить установленную мощность
-
+    void setDimmerPosition(DimmerPosition position); //установить мощность на димере в процентах
 }

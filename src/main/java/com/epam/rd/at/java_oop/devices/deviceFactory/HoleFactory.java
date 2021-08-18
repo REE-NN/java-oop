@@ -9,14 +9,14 @@ import com.epam.rd.at.java_oop.devices.deviceType.AbstractElectrodevice;
 public class HoleFactory {
 
     public AbstractElectrodevice createSomeElectrodevice() {
-        AbstractElectrodeviceFactory factory;
+        IAbstractElectrodeviceFactory factory;
         TypeOfDevice type = TypeOfDevice.getRandomElectrodevice();
 
         switch (type) {
-            case HouseholdAppliance:
+            case HOUSEHOLD_APPLIANCE:
                 factory = new HouseholdApplianceFactory();
                 break;
-            case Illumination:
+            case ILLUMINATION:
                 factory = new IlluminationFactory();
                 break;
 

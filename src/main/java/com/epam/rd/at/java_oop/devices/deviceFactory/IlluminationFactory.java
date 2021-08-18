@@ -7,7 +7,7 @@ import com.epam.rd.at.java_oop.devices.deviceType.illumination.TypeOfIlluminatio
 /**
  Класс создаёт рандомный осветительный электроприбор, с рандомными же характеристиками.
  */
-public class IlluminationFactory implements AbstractElectrodeviceFactory {
+public class IlluminationFactory implements IAbstractElectrodeviceFactory {
     private final int price = (int) (Math.random() * 1500); //цена от
     private final int power = (int) (Math.random() * 10 + 30);
 

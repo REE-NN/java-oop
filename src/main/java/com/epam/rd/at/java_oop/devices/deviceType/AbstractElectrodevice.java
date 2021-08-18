@@ -3,15 +3,16 @@ package com.epam.rd.at.java_oop.devices.deviceType;
 /**
  * Общий для всех домашних электроприборов класс AbstractElectrodevice implements Connection
  */
-public abstract class AbstractElectrodevice implements Connection, Comparable<AbstractElectrodevice> {
-    private final int cost;         //цена
-    private final int capacity;     //мощность
-    private boolean isEnable;       //включено/выключено
+public abstract class AbstractElectrodevice implements IConnectable, Comparable<AbstractElectrodevice> {
 
-    protected AbstractElectrodevice(int price, int capacity) {
-        this.cost = price;
-        this.capacity = capacity;
-        this.isEnable = false;
+    private boolean isEnabled;      //включено/выключено
+    private final int cost;         //цена
+    private final int maxPower;     //мощность
+
+    protected AbstractElectrodevice(int cost, int maxPower) {
+        this.cost = cost;
+        this.maxPower = maxPower;
+        this.isEnabled = false;
     }
 
     public int getCost() {
@@ -19,19 +20,15 @@ public abstract class AbstractElectrodevice implements Connection, Comparable<Ab
     }
 
     public int getMaxPower() {
-        return capacity;
+        return maxPower;
     }
 
-    public boolean getIsEnable() {
-        return isEnable;
+    protected void setEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
     }
 
-    public void setIsEnable() {
-        isEnable = true;
-    }
-
-    public void setIsDisable() {
-        isEnable = false;
+    public boolean isEnabled() {
+        return this.isEnabled;
     }
 
     @Override
@@ -39,3 +36,4 @@ public abstract class AbstractElectrodevice implements Connection, Comparable<Ab
         return toString().compareTo(dev.toString());
     }
 }
+

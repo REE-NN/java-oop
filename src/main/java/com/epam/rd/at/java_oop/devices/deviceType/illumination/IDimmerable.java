@@ -11,4 +11,10 @@ import com.epam.rd.at.java_oop.devices.deviceType.IConnectable;
 public interface IDimmerable extends IConnectable {
 
     void setDimmerPosition(DimmerPosition position); //установить мощность на димере в процентах
+
+    int getDimmerPosition();
+
+    default int calculateSuppliedPower() {
+        return getDimmerPosition() == 0 ? 0 : getMaxPower() * getDimmerPosition() / 100;
+    }
 }

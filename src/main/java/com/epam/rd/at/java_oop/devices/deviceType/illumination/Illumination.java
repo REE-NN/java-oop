@@ -5,28 +5,24 @@ import com.epam.rd.at.java_oop.devices.deviceType.AbstractElectrodevice;
 public class Illumination extends AbstractElectrodevice implements IDimmerable {
     private final TypeOfIllumination type;  //тип
     private final String name;
-    private int dimmerPosition;
+    private DimmerPosition dimmerPosition;
 
     public Illumination(TypeOfIllumination type, int cost, int maxPower) {
         super(cost, maxPower);
         this.type = type;
         this.name = "Осветительный прибор";
+        this.dimmerPosition = DimmerPosition.N1;
     }
 
     @Override
-    public int getDimmerPosition() {
+    public DimmerPosition getDimmerPosition() {
         return dimmerPosition;
     }
 
     @Override
     public void setDimmerPosition(DimmerPosition position) {
-        dimmerPosition = position.getPowerPercents();
-        setEnabled(getDimmerPosition() > 0);
-    }
-
-    @Override
-    public int getSuppliedPower() {
-        return calculateSuppliedPower();
+        dimmerPosition = position;
+        setEnabled(getDimmerPosition().getPowerPercents() > 0);
     }
 
     @Override

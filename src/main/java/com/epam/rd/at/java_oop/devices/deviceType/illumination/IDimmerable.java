@@ -12,9 +12,10 @@ public interface IDimmerable extends IConnectable {
 
     void setDimmerPosition(DimmerPosition position); //установить мощность на димере в процентах
 
-    int getDimmerPosition();
+    DimmerPosition getDimmerPosition();
 
-    default int calculateSuppliedPower() {
-        return getDimmerPosition() == 0 ? 0 : getMaxPower() * getDimmerPosition() / 100;
+    @Override
+    default int getSuppliedPower() {
+        return getMaxPower() * getDimmerPosition().getPowerPercents() / 100;
     }
 }
